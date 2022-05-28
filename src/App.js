@@ -6,7 +6,7 @@ import Protected from './cmp/Protected';
 import Profile from './cmp/Profile';
 import Events from './cmp/Events';
 import SignIn from './cmp/SingIn/SignIn';
-import Products from './cmp/Product/Products';
+import Products from './Pages/ProductPage';
 import Nav from './cmp/Nav/Nav';
 import NavBar from './cmp/Nav/NavBar';
 import Event from './cmp/Event';
