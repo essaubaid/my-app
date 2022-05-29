@@ -5,7 +5,7 @@ import Home from "./Pages/Home";
 import Protected from './cmp/Protected';
 import Profile from './cmp/Profile';
 import Events from './cmp/Events';
-import SignIn from './cmp/SingIn/SignIn';
+import SignIn from './Pages/SignInPage';
 import Register from './Pages/Register';
 import Products from './Pages/ProductPage';
 import Nav from './cmp/Nav/Nav';
