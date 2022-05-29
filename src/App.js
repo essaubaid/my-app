@@ -1,4 +1,4 @@
-import logo from './logo.svg';
+//import logo from './logo.svg';
 import './App.css';
 import Auth from "./cmp/Auth";
 import Home from "./Pages/Home";
@@ -10,7 +10,8 @@ import Register from './Pages/Register';
 import Products from './Pages/ProductPage';
 import Nav from './cmp/Nav/Nav';
 import NavBar from './cmp/Nav/NavBar';
-import Event from './cmp/Event';
+//import Event from './cmp/Event';
+import Product from './Pages/product';
 import { Route, Routes, Link, BrowserRouter as Router } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -29,9 +30,10 @@ function App() {
         <Link to="products">Products</Link>
         <Link to="nav">Nav</Link>
         <Link to="navbar">NavBar</Link>
+        <Link to="product">product Page</Link>
 
         <Routes>
-          <Route path="/home" element={<Protected cmp={Home} />} />
+          <Route path="/home" element={<Home />} />
           <Route path="/" element={<Auth />} />
           <Route path="/profile" element={<Protected cmp={Profile} />} />
           <Route path="/events" element={<Events />} />
@@ -40,6 +42,8 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/navbar" element={<NavBar />} />
+          <Route path="/product" element={<Product />} />
+          
           {/* <Home />
           </Route>
 

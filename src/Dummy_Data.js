@@ -1,4 +1,4 @@
-import banner_1 from './assets/Banner-1.jpg';
+// import banner_1 from './assets/Banner-1.jpg';
 
 export const sliderItems = [
     {
