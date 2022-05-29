@@ -6,6 +6,7 @@ import Protected from './cmp/Protected';
 import Profile from './cmp/Profile';
 import Events from './cmp/Events';
 import SignIn from './cmp/SingIn/SignIn';
+import Register from './Pages/Register';
 import Products from './Pages/ProductPage';
 import Nav from './cmp/Nav/Nav';
 import NavBar from './cmp/Nav/NavBar';
@@ -24,6 +25,7 @@ function App() {
         <Link to="profile">Profile</Link>
         <Link to="events">Events</Link>
         <Link to="signin">SignIn</Link>
+        <Link to="register">Register</Link>
         <Link to="products">Products</Link>
         <Link to="nav">Nav</Link>
         <Link to="navbar">NavBar</Link>
@@ -34,6 +36,7 @@ function App() {
           <Route path="/profile" element={<Protected cmp={Profile} />} />
           <Route path="/events" element={<Events />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/register" element={<Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/navbar" element={<NavBar />} />
