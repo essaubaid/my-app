@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ShoppingCartOutlined, SearchOutlined } from '@material-ui/icons'
+import axios from 'axios';
 
 const Info = styled.div`
     opacity: 0;
@@ -65,10 +66,19 @@ const Icon = styled.div`
 `;
 
 const ProductCard = ({ item }) => {
+    var img
+
+    if (item.productImageURL) {
+        img = `http://localhost:5000/api/images/${item.productImageURL}`
+    }
+    else {
+        img = item.img
+    }
+
     return (
         <Container>
             <Circle />
-            <Image src={item.img} />
+            <Image src={img} />
             <Info>
                 <Icon>
                     <ShoppingCartOutlined />

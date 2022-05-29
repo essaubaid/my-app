@@ -11,11 +11,18 @@ const Container = styled.div`
 `;
 
 
-const Products = () => {
+const Products = (props) => {
+    var ProductList = []
+    if (!props.cmp) {
+        ProductList = newProducts
+    }
+    else {
+        ProductList = props.cmp
+    }
     return (
         <Container>
-            {newProducts.map((item) => (
-                <ProductCard item={item} key={item.id} />
+            {ProductList.map((item) => (
+                <ProductCard item={item} key={item._id} />
             ))}
         </Container>
     )

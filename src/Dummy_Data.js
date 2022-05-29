@@ -26,21 +26,21 @@ export const sliderItems = [
 export const newProducts = [
 
     {
-        id: 1,
+        _id: 1,
         img: "https://static.zajo.net/content/mediagallery/zajo_dcat/image/product/types/X/9086.png",
         title: "Plain T",
         price: 2000
     },
 
     {
-        id: 2,
+        _id: 2,
         img: "https://static.zajo.net/content/mediagallery/zajo_dcat/image/product/types/X/9086.png",
         title: "Plain T White",
         price: 2000
     },
 
     {
-        id: 3,
+        _id: 3,
         img: "https://static.zajo.net/content/mediagallery/zajo_dcat/image/product/types/X/9086.png",
         title: "Plain T Black",
         price: 2000
