@@ -15,6 +15,7 @@ import Product from './Pages/product';
 import { Route, Routes, Link, BrowserRouter as Router } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
+import ShippingDetails from './Pages/ShippingDetails';
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Link to="nav">Nav</Link>
         <Link to="navbar">NavBar</Link>
         <Link to="product">product Page</Link>
+        <Link to="ShippingDetails">ShippingDetails</Link>
 
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -43,6 +45,7 @@ function App() {
           <Route path="/nav" element={<Nav />} />
           <Route path="/navbar" element={<NavBar />} />
           <Route path="/product" element={<Product />} />
+          <Route path="/ShippingDetails" element={<ShippingDetails />} />
           
           {/* <Home />
           </Route>
