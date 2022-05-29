@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import axios from "axios"
 
 const Container = styled.div`
     width: 100vw;
@@ -67,10 +66,8 @@ export default class SignInPage extends Component {
             body: JSON.stringify(this.state),
         }).then((result) => {
             result.json().then((res) => {
-                //console.log(res.others.token);
                 localStorage.setItem("token", JSON.stringify(res.others.token));
                 localStorage.setItem("User", JSON.stringify(res.others));
-                //console.log(JSON.parse(localStorage.getItem("User")));
             })
         })
     }

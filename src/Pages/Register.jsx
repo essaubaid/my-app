@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components'
+import axios from "axios"
 
 const Container = styled.div`
     width: 100vw;
@@ -51,22 +52,43 @@ const Button = styled.button`
 `;
 
 class Register extends Component {
+
+    async Register() {
+        axios.post(`http://localhost:5000/api/auth/register`,
+            this.state
+        ).then((res) => {
+            console.log(res);
+        }).catch(console.log)
+    }
+
     render() {
         return (
             <Container>
                 <Wrapper>
                     <Title>CREATE AN ACCOUNT</Title>
-                    <Form>
-                        <Input placeholder="First Name" />
-                        <Input placeholder="Last Name" />
-                        <Input placeholder="Username" />
-                        <Input placeholder="E-Mail" />
-                        <Input placeholder="Password" />
-                        <Input placeholder="Confirm Password" />
+                    <Form onSubmit={e => e.preventDefault()}>
+                        <Input placeholder="First Name" onChange={(e) => {
+                            this.setState({ f_name: e.target.value });
+                        }} />
+                        <Input placeholder="Last Name" onChange={(e) => {
+                            this.setState({ l_name: e.target.value });
+                        }} />
+                        <Input placeholder="Username" onChange={(e) => {
+                            this.setState({ username: e.target.value });
+                        }} />
+                        <Input placeholder="E-Mail" onChange={(e) => {
+                            this.setState({ email: e.target.value });
+                        }} />
+                        <Input placeholder="Password" onChange={(e) => {
+                            this.setState({ password: e.target.value });
+                        }} />
+                        <Input placeholder="Confirm Password" onChange={(e) => {
+                            this.setState({ c_password: e.target.value });
+                        }} />
                         <Agreement>
                             By creating an account, I consent to the processing of my personal data in accordance with the <b>PRIVACY POLICY</b>
                         </Agreement>
-                        <Button>Crate Account</Button>
+                        <Button onClick={() => this.Register()}>Crate Account</Button>
                     </Form>
                 </Wrapper>
             </Container>
