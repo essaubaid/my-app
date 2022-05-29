@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import axios from "axios"
 
 const Container = styled.div`
     width: 100vw;
@@ -54,15 +55,39 @@ const Link = styled.a`
     cursor: pointer;
 `;
 export default class SignInPage extends Component {
+
+    async Login() {
+        console.warn(this.state);
+        fetch("http://localhost:5000/api/auth/login", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.state),
+        }).then((result) => {
+            result.json().then((res) => {
+                //console.log(res.others.token);
+                localStorage.setItem("token", JSON.stringify(res.others.token));
+                localStorage.setItem("User", JSON.stringify(res.others));
+                //console.log(JSON.parse(localStorage.getItem("User")));
+            })
+        })
+    }
+
     render() {
         return (
             <Container>
                 <Wrapper>
                     <Title>Sign In</Title>
                     <Form>
-                        <Input placeholder="Username" />
-                        <Input placeholder="Password" />
-                        <Button>LOGIN</Button>
+                        <Input placeholder="Username" onChange={(e) => {
+                            this.setState({ username: e.target.value });
+                        }} />
+                        <Input placeholder="Password" type="password" onChange={(e) => {
+                            this.setState({ password: e.target.value });
+                        }} />
+                        <Button onClick={() => this.Login()}>LOGIN</Button>
                         <Link>FORGOT PASSWORD?</Link>
                         <Link>CREATE A NEW ACCOUNT</Link>
                     </Form>
