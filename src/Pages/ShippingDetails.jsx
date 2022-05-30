@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Navbar from '../cmp/Nav/NavBar';
 import Footer from '../cmp/Footer';
 import TextField  from '@material-ui/core/TextField';
+import Pay from '../cmp/Cart/Pay';
 
 
 const Container = styled.div``;
@@ -116,7 +117,8 @@ class ShippingDetails extends Component {
                   color = 'secondary'
               />
               </Wrapper>
-              <Button>Submit</Button>
+              <Pay/>
+              <Button>Cash on Delivery</Button>
               <Button2>Cancel</Button2>
           </form>   
         <Summary>

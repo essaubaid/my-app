@@ -4,6 +4,7 @@ import Navbar from '../cmp/Nav/NavBar';
 import Footer from '../cmp/Footer';
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from 'react-redux';
+import Pay from '../cmp/Cart/Pay'
 
 
 const Container = styled.div``;
@@ -120,7 +121,7 @@ const Summary = styled.div`
   border: 0.5px solid lightgray;
   border-radius: 10px;
   padding: 20px;
-  height: 50vh;
+  height: 70vh;
 `;
 
 const SummaryTitle = styled.h1`
@@ -214,8 +215,8 @@ const Cart = () => {
               <SummaryItemText>Total</SummaryItemText>
               <SummaryItemPrice>Rs {cart.total}</SummaryItemPrice>
             </SummaryItem>
-            <Button>CHECKOUT NOW</Button>
-          </Summary>
+             <Pay/>
+            </Summary>
         </Bottom>
       </Wrapper>
       <Footer />
