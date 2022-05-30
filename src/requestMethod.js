@@ -4,7 +4,7 @@ const BASE_URL = "http://localhost:5000/api/"
 
 const TOKEN = ""
 
-export const publicResquest = axios.create({
+export const publicRequest = axios.create({
     baseURL: BASE_URL,
 })
 

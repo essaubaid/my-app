@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
+import { login } from '../redux/apiCalls';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
     width: 100vw;
@@ -45,6 +47,10 @@ const Button = styled.button`
     color: white;
     cursor: pointer;
     margin-bottom: 10px;
+    &:disabled{
+        color: teal;
+        cursor: not-allowed;
+    }
 `;
 const Link = styled.a`
     margin: 5px 0px;
@@ -53,43 +59,39 @@ const Link = styled.a`
     color: black;
     cursor: pointer;
 `;
-export default class SignInPage extends Component {
 
-    async Login() {
-        console.warn(this.state);
-        fetch("http://localhost:5000/api/auth/login", {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(this.state),
-        }).then((result) => {
-            result.json().then((res) => {
-                localStorage.setItem("token", JSON.stringify(res.others.token));
-                localStorage.setItem("User", JSON.stringify(res.others));
-            })
-        })
+const Error = styled.span`
+    color: red;
+`
+
+const SignInPage = () => {
+    const [username, setUsername] = useState("")
+    const [password, setPassword] = useState("")
+    const dispatch = useDispatch()
+    const { isFetching, error } = useSelector((state) => state.user)
+
+    const handleClick = (e) => {
+        e.preventDefault()
+        login(dispatch, { username, password })
     }
 
-    render() {
-        return (
-            <Container>
-                <Wrapper>
-                    <Title>Sign In</Title>
-                    <Form>
-                        <Input placeholder="Username" onChange={(e) => {
-                            this.setState({ username: e.target.value });
-                        }} />
-                        <Input placeholder="Password" type="password" onChange={(e) => {
-                            this.setState({ password: e.target.value });
-                        }} />
-                        <Button onClick={() => this.Login()}>LOGIN</Button>
-                        <Link>FORGOT PASSWORD?</Link>
-                        <Link>CREATE A NEW ACCOUNT</Link>
-                    </Form>
-                </Wrapper>
-            </Container>
-        )
-    }
+    return (
+        <Container>
+            <Wrapper>
+                <Title>Sign In</Title>
+                <Form>
+                    <Input placeholder="username" onChange={(e) => setUsername(e.target.value)} />
+
+                    <Input placeholder="Password" type="password" onChange={(e) => setPassword(e.target.value)} />
+
+                    <Button onClick={handleClick} disabled={isFetching}>LOGIN</Button>
+                    {error && <Error>Something went wrong...</Error>}
+                    <Link>FORGOT PASSWORD?</Link>
+                    <Link>CREATE A NEW ACCOUNT</Link>
+                </Form>
+            </Wrapper>
+        </Container>
+    )
 }
+
+export default SignInPage

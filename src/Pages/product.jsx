@@ -5,7 +5,7 @@ import image from "../assets/default-placeholder.png"
 import { Add, Remove } from "@material-ui/icons"
 import { useLocation } from "react-router-dom"
 import { useEffect, useState } from "react"
-import { publicResquest } from "../requestMethod"
+import { publicRequest } from "../requestMethod"
 import { addProduct } from "../redux/cartRedux"
 import { useDispatch } from "react-redux"
 
@@ -123,7 +123,7 @@ const Product = () => {
     useEffect(() => {
         const getProduct = async () => {
             try {
-                const res = await publicResquest.get(`/product/find/${id}`)
+                const res = await publicRequest.get(`/product/find/${id}`)
                 setProduct(res.data)
                 setIsLoading(true)
             } catch { }
