@@ -3,6 +3,11 @@ import Footer from "../cmp/Footer"
 import Navbar from "../cmp/Nav/NavBar"
 import image from "../assets/default-placeholder.png"
 import { Add, Remove } from "@material-ui/icons"
+import { useLocation } from "react-router-dom"
+import { useEffect, useState } from "react"
+import { publicResquest } from "../requestMethod"
+import { addProduct } from "../redux/cartRedux"
+import { useDispatch } from "react-redux"
 
 const Container = styled.div``;
 const Wrapper = styled.div`
@@ -10,9 +15,9 @@ const Wrapper = styled.div`
     display: flex;
 `;
 const Image = styled.img`
-width:100%;
-height:90vh;
-object-fit: cover;
+    width:100%;
+    height:90vh;
+    object-fit: contain;
 
 `;
 const ImgContainer = styled.div`
@@ -106,50 +111,90 @@ font-weight:500;
 
 
 const Product = () => {
+    const location = useLocation()
+    const id = location.pathname.split("/")[2]
+    const [product, setProduct] = useState({})
+    const [isLoading, setIsLoading] = useState(false)
+    const [quantity, setQuantity] = useState(1)
+    const [color, setColor] = useState("")
+    const [size, setSize] = useState("")
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        const getProduct = async () => {
+            try {
+                const res = await publicResquest.get(`/product/find/${id}`)
+                setProduct(res.data)
+                setIsLoading(true)
+            } catch { }
+        }
+        getProduct();
+    }, [id])
+
+    const handleQuantity = (type) => {
+        if (type === "dec") {
+            quantity > 1 && setQuantity(quantity - 1)
+        }
+        else {
+            setQuantity(quantity + 1)
+        }
+    }
+
+    const returnImage = () => {
+        if (!isLoading) {
+            return (<div>Hello World</div>);
+        }
+        else {
+            return <Image src={`http://localhost:5000/api/images/${product.productImageURL}`}></Image>
+        }
+    }
+
+    const handleClick = () => {
+        dispatch(
+            addProduct({
+                ...product, quantity, color, size
+            })
+        )
+
+    }
+
     return (
         <Container>
             <Navbar />
             <Wrapper>
                 <ImgContainer>
-                    <Image src={image}></Image>
+                    {returnImage()}
                 </ImgContainer>
                 <InfoContainer>
-                    <Title>Denim Jacket</Title>
-                    <Desc>Jacket in sturdy cotton denim with a collar, buttons down the front
-                        and a yoke front and back. Flap chest pockets with a button and long
-                        sleeves with buttoned cuffs. Jacket in sturdy cotton denim with a
-                        collar, buttons down the front and a yoke front and back. Flap chest
-                        pockets with a button and long sleeves with buttoned cuffs.
-
-
+                    <Title>{product.productName}</Title>
+                    <Desc>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Harum, omnis labore eos obcaecati doloribus et molestiae magni! Corporis excepturi distinctio illum, molestias, nam quos blanditiis, tempore eum rerum reiciendis vero.
                     </Desc>
-                    <Price>$30</Price>
+                    <Price>Rs{product.productPrice}</Price>
 
                     <FilterContainer>
                         <Filter>
                             <FilterTitle>Color</FilterTitle>
-                            <FilterColor color="Black" />
-                            <FilterColor color="Pink" />
-                            <FilterColor color="Maroon" />
-                            <FilterColor color="Grey" />
+                            {product.color?.map((element) => (
+                                <FilterColor color={element} key={element} onClick={() => setColor(element)} />
+                            ))}
 
                         </Filter>
                         <Filter>
                             <FilterTitle>Size</FilterTitle>
-                            <FilterSize>
-                                <FilterSizeOption>S</FilterSizeOption>
-                                <FilterSizeOption>M</FilterSizeOption>
-                                <FilterSizeOption>L</FilterSizeOption>
+                            <FilterSize onChange={(event) => { setSize(event.target.value) }}>
+                                {product.size?.map((element) => (
+                                    <FilterSizeOption key={element}>{element}</FilterSizeOption>
+                                ))}
                             </FilterSize>
                         </Filter>
                     </FilterContainer>
                     <AddContainer>
                         <AmountContainer>
-                            <Remove />
-                            <Amount>1</Amount>
-                            <Add />
+                            <Remove onClick={() => handleQuantity("dec")} />
+                            <Amount>{quantity}</Amount>
+                            <Add onClick={() => handleQuantity("inc")} />
                         </AmountContainer>
-                        <Button>ADD TO CART</Button>
+                        <Button onClick={handleClick}>ADD TO CART</Button>
 
                     </AddContainer>
                 </InfoContainer>

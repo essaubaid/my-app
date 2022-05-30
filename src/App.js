@@ -12,10 +12,11 @@ import Nav from './cmp/Nav/Nav';
 import NavBar from './cmp/Nav/NavBar';
 //import Event from './cmp/Event';
 import Product from './Pages/product';
+import ShippingDetails from './Pages/ShippingDetails';
+import Cart from './Pages/Cart';
 import { Route, Routes, Link, BrowserRouter as Router } from 'react-router-dom';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
-import ShippingDetails from './Pages/ShippingDetails';
 
 function App() {
   return (
@@ -33,6 +34,7 @@ function App() {
         <Link to="navbar">NavBar</Link>
         <Link to="product">product Page</Link>
         <Link to="ShippingDetails">ShippingDetails</Link>
+        <Link to="cart">ShippingDetails</Link>
 
         <Routes>
           <Route path="/home" element={<Home />} />
@@ -44,9 +46,10 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/navbar" element={<NavBar />} />
-          <Route path="/product" element={<Product />} />
+          <Route path="/product/:id" element={<Product />} />
           <Route path="/ShippingDetails" element={<ShippingDetails />} />
-          
+          <Route path="/cart" element={<Cart />} />
+
           {/* <Home />
           </Route>
 

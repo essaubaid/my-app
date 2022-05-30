@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { ShoppingCartOutlined, SearchOutlined } from '@material-ui/icons'
-import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Info = styled.div`
     opacity: 0;
@@ -81,7 +81,9 @@ const ProductCard = ({ item }) => {
             <Image src={img} />
             <Info>
                 <Icon>
-                    <ShoppingCartOutlined />
+                    <Link to={`/product/${item._id}`}>
+                        <ShoppingCartOutlined />
+                    </Link>
                 </Icon>
                 <Icon>
                     <SearchOutlined />
