@@ -14,11 +14,13 @@ import NavBar from './cmp/Nav/NavBar';
 import Product from './Pages/product';
 import ShippingDetails from './Pages/ShippingDetails';
 import Cart from './Pages/Cart';
-import { Route, Routes, Link, BrowserRouter as Router } from 'react-router-dom';
+import { Route, Routes, Link, BrowserRouter as Router, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-function App() {
+const App = () => {
+  const user = useSelector((state) => state.user.currentUser)
   return (
     <div>
 
@@ -41,8 +43,10 @@ function App() {
           <Route path="/" element={<Auth />} />
           <Route path="/profile" element={<Protected cmp={Profile} />} />
           <Route path="/events" element={<Events />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/register" element={<Register />} />
+          <Route path="/signin" element={
+            user ? <Navigate to="/home" /> : <SignIn />} />
+          <Route path="/register" element={
+            user ? <Navigate to="/home" /> : <Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/navbar" element={<NavBar />} />
