@@ -1,13 +1,52 @@
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import axios from 'axios';
+import { placeOrder } from '../../redux/apiCalls';
 
 const KEY = "pk_test_51L4nldDp99vLXs5cXWP7XCyYKjt1NkcWH0TxsMqP7PTix6XGyypGdEaM68jXWEsMw3a3ZOKgRvGUnrnOjTQXR8NZ00el7SAeFK"
 const Pay = () => {
 
     const [stripeToken, setStripeToken] = useState(null);
+    // const [shippingAddress, setShippingAddress] = useState({})
+    // const [order, setOrder] = useState({})
+    // const [product, setProduct] = useState([{}])
+    // const [orderDetails, setOrderDetails] = useState([{}])
+    let order = {}
+    let OrderDetails = []
+    let products = []
+    const cart = useSelector(state => state.cart)
+    const user = useSelector((state) => state.user.currentUser)
+
+    const handleClick = (address) => {
+        order = {
+            userID: user._id,
+            username: user.username,
+        };
+        cart.products.map(item => (
+
+            OrderDetails.push({
+                product: {
+                    _id: item._id,
+                    productName: item.productName,
+                    productPrice: item.productPrice,
+                    productImageURL: item.productImageURL,
+
+                },
+                quantity: item.quantity,
+                size: item.size,
+                color: item.color,
+            })
+        ))
+
+        order.OrderDetails = OrderDetails
+        order.shipping_address = address
+
+        //console.log(order)
+        placeOrder(order);
 
 
+    }
 
     const onToken = (token) => {
         setStripeToken(token);
@@ -21,7 +60,7 @@ const Pay = () => {
                     amount: 2000,
                 }
                 );
-                console.log(res.data);
+                handleClick(res.data.billing_details)
             } catch (err) {
                 console.log(err)
             }
