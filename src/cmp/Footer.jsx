@@ -1,6 +1,7 @@
 import { Facebook, Instagram, MailOutline, Phone, Room, Twitter } from '@material-ui/icons';
 import React from 'react'
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 
 const Container = styled.div`
     display: flex;
@@ -34,18 +35,12 @@ const Title = styled.h3`
     margin-bottom: 30px;
 `;
 
-const List = styled.ul`
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
 
-`;
 
 const ListItem = styled.li`
     width: 100%;
     margin-bottom: 10px;
+    list-style:none;
 `;
 
 const Logo = styled.h1`
@@ -70,6 +65,7 @@ const SocialIcon = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 20px;
+    cursor:pointer;
 `;
 
 const Footer = () => {
@@ -102,12 +98,17 @@ const Footer = () => {
                 <Title>
                     Useful Links
                 </Title>
-                <List>
+                    <Link to ="/home/">
                     <ListItem>Home</ListItem>
+                    </Link>
+                    <Link to ="/cart?">
                     <ListItem>Cart</ListItem>
+                    </Link>
+                    <Link to ="/products?">
+
                     <ListItem>Shop</ListItem>
-                    <ListItem>My Account</ListItem>
-                </List>
+                    </Link>
+
             </Center>
 
             <Right>

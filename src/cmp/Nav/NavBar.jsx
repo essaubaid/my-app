@@ -54,6 +54,22 @@ const MenuItem = styled.div`
     cursor: pointer;
     margin-left: 25px;
 `;
+const Button = styled.button`
+padding: 5px;
+border:0px;
+background-color: black;
+color:white;
+cursor: pointer; 
+font-weight:500;
+margin-left:10px;
+
+&:hover{
+    background-color: #FFFFFF;
+   color:black;
+        
+}
+
+`;
 
 const Navbar = () => {
     const quantity = useSelector(state => state.cart.quantity);
@@ -66,13 +82,23 @@ const Navbar = () => {
                         <Input />
                         <Search style={{ color: "gray", fontSize: 16 }} />
                     </SearchContainer>
+                    <Link to ="/products">
+                    <Button>Products</Button>
+                    </Link>
+
+
                 </Left>
                 <Center>
+
                     <Logo>THRIFTY.</Logo>
                 </Center>
                 <Right>
+                    <Link to ="/register">
                     <MenuItem>REGISTER</MenuItem>
+                    </Link>
+                    <Link to="/signin">
                     <MenuItem>SIGN IN</MenuItem>
+                    </Link>
                     <Link to="/cart">
                         <MenuItem>
                             <Badge badgeContent={quantity} color="primary">

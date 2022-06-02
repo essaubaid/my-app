@@ -5,6 +5,8 @@ import Footer from '../cmp/Footer';
 import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from 'react-redux';
 import Pay from '../cmp/Cart/Pay'
+import { Link } from 'react-router-dom';
+
 
 
 const Container = styled.div``;
@@ -140,13 +142,7 @@ const SummaryItemText = styled.span``;
 
 const SummaryItemPrice = styled.span``;
 
-const Button = styled.button`
-  width: 100%;
-  padding: 10px;
-  background-color: black;
-  color: white;
-  font-weight: 600;
-`;
+
 
 const Cart = () => {
   const cart = useSelector(state => state.cart)
@@ -157,12 +153,10 @@ const Cart = () => {
       <Wrapper>
         <Title>YOUR BAG</Title>
         <Top>
+          <Link to="/products/">
           <TopButton>CONTINUE SHOPPING</TopButton>
-          <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
-            <TopText>Your Wishlist (0)</TopText>
-          </TopTexts>
-          <TopButton type="filled">CHECKOUT NOW</TopButton>
+          </Link>
+          
         </Top>
         <Bottom>
           <Info>
