@@ -82,24 +82,28 @@ const Navbar = () => {
                         <Input />
                         <Search style={{ color: "gray", fontSize: 16 }} />
                     </SearchContainer>
-                    <Link to ="/products">
-                    <Button>Products</Button>
-                    </Link>
+                    {/* <Link to="/products">
+                        <Button>Products</Button>
+                    </Link> */}
 
 
                 </Left>
                 <Center>
-
-                    <Logo>THRIFTY.</Logo>
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/">
+                        <Logo>THRIFTY.</Logo>
+                    </Link>
                 </Center>
                 <Right>
-                    <Link to ="/register">
-                    <MenuItem>REGISTER</MenuItem>
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/products">
+                        <MenuItem>PRODUCTS</MenuItem>
                     </Link>
-                    <Link to="/signin">
-                    <MenuItem>SIGN IN</MenuItem>
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/register">
+                        <MenuItem>REGISTER</MenuItem>
                     </Link>
-                    <Link to="/cart">
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/signin">
+                        <MenuItem>SIGN IN</MenuItem>
+                    </Link>
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/cart">
                         <MenuItem>
                             <Badge badgeContent={quantity} color="primary">
                                 <ShoppingCartOutlined />

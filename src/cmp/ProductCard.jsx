@@ -81,12 +81,12 @@ const ProductCard = ({ item }) => {
             <Image src={img} />
             <Info>
                 <Icon>
-                    <Link to={`/product/${item._id}`}>
-                        <ShoppingCartOutlined />
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to={`/product/${item._id}`}>
+                        <SearchOutlined />
                     </Link>
                 </Icon>
                 <Icon>
-                    <SearchOutlined />
+                    <ShoppingCartOutlined />
                 </Icon>
             </Info>
         </Container>

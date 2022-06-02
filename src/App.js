@@ -25,7 +25,7 @@ const App = () => {
     <div>
 
       <Router>
-        <Link to="home">Home</Link>
+        {/* <Link to="home">Home</Link>
         <Link to="/">Login</Link>
         <Link to="profile">Profile</Link>
         <Link to="events">Events</Link>
@@ -36,17 +36,17 @@ const App = () => {
         <Link to="navbar">NavBar</Link>
         <Link to="product">product Page</Link>
         <Link to="ShippingDetails">ShippingDetails</Link>
-        <Link to="cart">ShippingDetails</Link>
+        <Link to="cart">ShippingDetails</Link> */}
 
         <Routes>
-          <Route path="/home" element={<Home />} />
-          <Route path="/" element={<Auth />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/Auth" element={<Auth />} />
           <Route path="/profile" element={<Protected cmp={Profile} />} />
           <Route path="/events" element={<Events />} />
           <Route path="/signin" element={
-            user ? <Navigate to="/home" /> : <SignIn />} />
+            user ? <Navigate to="/" /> : <SignIn />} />
           <Route path="/register" element={
-            user ? <Navigate to="/home" /> : <Register />} />
+            user ? <Navigate to="/" /> : <Register />} />
           <Route path="/products" element={<Products />} />
           <Route path="/nav" element={<Nav />} />
           <Route path="/navbar" element={<NavBar />} />

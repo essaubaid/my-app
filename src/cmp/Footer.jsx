@@ -98,16 +98,16 @@ const Footer = () => {
                 <Title>
                     Useful Links
                 </Title>
-                    <Link to ="/home/">
+                <Link style={{ color: "inherit", textDecoration: "none" }} to="/">
                     <ListItem>Home</ListItem>
-                    </Link>
-                    <Link to ="/cart?">
+                </Link>
+                <Link style={{ color: "inherit", textDecoration: "none" }} to="/cart?">
                     <ListItem>Cart</ListItem>
-                    </Link>
-                    <Link to ="/products?">
+                </Link>
+                <Link style={{ color: "inherit", textDecoration: "none" }} to="/products?">
 
                     <ListItem>Shop</ListItem>
-                    </Link>
+                </Link>
 
             </Center>
 
