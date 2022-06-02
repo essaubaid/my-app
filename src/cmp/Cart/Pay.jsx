@@ -2,7 +2,7 @@ import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { placeOrder } from '../../redux/apiCalls';
+import { PlaceOrder } from '../../redux/apiCalls';
 
 const KEY = "pk_test_51L4nldDp99vLXs5cXWP7XCyYKjt1NkcWH0TxsMqP7PTix6XGyypGdEaM68jXWEsMw3a3ZOKgRvGUnrnOjTQXR8NZ00el7SAeFK"
 const Pay = () => {
@@ -44,7 +44,7 @@ const Pay = () => {
         order.shipping_address = address
 
         //console.log(order)
-        placeOrder(dispatch, order);
+        PlaceOrder(dispatch, order);
 
 
     }

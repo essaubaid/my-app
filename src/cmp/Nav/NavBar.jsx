@@ -2,8 +2,9 @@ import React from "react";
 import { Badge } from "@material-ui/core";
 import { Search, ShoppingCartOutlined } from "@material-ui/icons";
 import styled from "styled-components";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
+import { logout } from "../../redux/apiCalls";
 
 const Container = styled.div`
     height: 60px;
@@ -72,7 +73,31 @@ margin-left:10px;
 `;
 
 const Navbar = () => {
+    const user = useSelector((state) => state.user.currentUser);
     const quantity = useSelector(state => state.cart.quantity);
+    const dispatch = useDispatch()
+
+    const handleClick = () => {
+        logout(dispatch)
+    }
+
+    const displayVarLinks = (user) => {
+        if (user) {
+            return (<MenuItem onClick={handleClick}>LOGOUT</MenuItem>);
+        }
+        else {
+            return (
+                <>
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/register">
+                        <MenuItem>REGISTER</MenuItem>
+                    </Link>
+                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/signin">
+                        <MenuItem>SIGN IN</MenuItem>
+                    </Link>
+                </>
+            );
+        }
+    }
 
     return (
         <Container>
@@ -97,12 +122,7 @@ const Navbar = () => {
                     <Link style={{ color: "inherit", textDecoration: "none" }} to="/products">
                         <MenuItem>PRODUCTS</MenuItem>
                     </Link>
-                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/register">
-                        <MenuItem>REGISTER</MenuItem>
-                    </Link>
-                    <Link style={{ color: "inherit", textDecoration: "none" }} to="/signin">
-                        <MenuItem>SIGN IN</MenuItem>
-                    </Link>
+                    {displayVarLinks(user)}
                     <Link style={{ color: "inherit", textDecoration: "none" }} to="/cart">
                         <MenuItem>
                             <Badge badgeContent={quantity} color="primary">

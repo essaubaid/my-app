@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { login } from '../redux/apiCalls';
+import { Login } from '../redux/apiCalls';
 import { useDispatch, useSelector } from 'react-redux';
 
 const Container = styled.div`
@@ -72,7 +72,7 @@ const SignInPage = () => {
 
     const handleClick = (e) => {
         e.preventDefault()
-        login(dispatch, { username, password })
+        Login(dispatch, { username, password })
     }
 
     return (
