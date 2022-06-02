@@ -1,6 +1,6 @@
 import StripeCheckout from 'react-stripe-checkout';
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { placeOrder } from '../../redux/apiCalls';
 
@@ -17,6 +17,7 @@ const Pay = () => {
     let products = []
     const cart = useSelector(state => state.cart)
     const user = useSelector((state) => state.user.currentUser)
+    const dispatch = useDispatch();
 
     const handleClick = (address) => {
         order = {
@@ -43,7 +44,7 @@ const Pay = () => {
         order.shipping_address = address
 
         //console.log(order)
-        placeOrder(order);
+        placeOrder(dispatch, order);
 
 
     }

@@ -1,4 +1,5 @@
 import { publicRequest, userRequest } from "../requestMethod";
+import { emptyCart, productFailure, productStart } from "./cartRedux";
 import { loginFailure, loginStart, loginSuccess } from "./userRedux"
 
 let user_id
@@ -19,10 +20,13 @@ export const login = async (dispatch, user) => {
     }
 }
 
-export const placeOrder = async (data) => {
+export const placeOrder = async (dispatch, data) => {
+    dispatch(productStart());
     try {
         const res = await userRequest.post(`/order/createOrder/${user_id}`, data)
-        console.log(res)
+        //console.log(res)
+        dispatch(emptyCart());
     } catch {
+        dispatch(productFailure())
     }
 }
