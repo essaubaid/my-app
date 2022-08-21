@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useSelector } from "react-redux";
 
-const BASE_URL = "http://localhost:5000/api/"
+const BASE_URL = "https://qdnmhwmb5d.us-east-1.awsapprunner.com/api/"
 
 // let TOKEN;
 // try {

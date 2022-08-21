@@ -69,7 +69,7 @@ const ProductCard = ({ item }) => {
     var img
 
     if (item.productImageURL) {
-        img = `http://localhost:5000/api/images/${item.productImageURL}`
+        img = `https://qdnmhwmb5d.us-east-1.awsapprunner.com/api/images/${item.productImageURL}`
     }
     else {
         img = item.img
